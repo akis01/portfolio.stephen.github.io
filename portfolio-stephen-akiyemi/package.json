@@ -1,0 +1,30 @@
+{
+  "name": "portfolio-stephen-akiyemi",
+  "version": "1.0.0",
+  "description": "Un portfolio moderne pour Stephen AKIYEMI, présentant ses compétences et expériences en informatique.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "webpack serve --mode development",
+    "build": "webpack --mode production"
+  },
+  "keywords": [
+    "portfolio",
+    "Stephen AKIYEMI",
+    "web development"
+  ],
+  "author": "Stephen AKIYEMI",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "webpack": "^5.64.4",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.6.0",
+    "babel-loader": "^8.2.3",
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "@babel/preset-react": "^7.16.0"
+  }
+}
