@@ -1,103 +1,156 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stephen AKIYEMI - Portfolio</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: #f5f6fa;
-            margin: 0;
-            padding: 0;
-            color: #222;
-        }
-        header {
-            background: #222;
-            color: #fff;
-            padding: 2rem 0;
-            text-align: center;
-        }
-        .container {
-            max-width: 900px;
-            margin: 2rem auto;
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 2px 16px rgba(0,0,0,0.08);
-            padding: 2rem;
-        }
-        h1 {
-            margin: 0 0 0.5rem 0;
-            font-size: 2.5rem;
-        }
-        h2 {
-            color: #0077ff;
-            margin-top: 2rem;
-        }
-        ul {
-            padding-left: 1.2rem;
-        }
-        .skills span {
-            display: inline-block;
-            background: #e3eaff;
-            color: #0077ff;
-            margin: 0.3rem 0.5rem 0.3rem 0;
-            padding: 0.4rem 0.8rem;
-            border-radius: 20px;
-            font-size: 1rem;
-        }
-        .footer {
-            text-align: center;
-            color: #888;
-            margin: 2rem 0 1rem 0;
-            font-size: 0.95rem;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stephen Akiyemi · Cybersécurité</title>
+  <meta name="description" content="Portfolio de Stephen Akiyemi, étudiant en L3 cybersécurité : pentest web, analyse réseau, automatisation IA et création de sites web.">
+  <meta name="author" content="Stephen Akiyemi">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Stephen Akiyemi · Cybersécurité">
+  <meta property="og:description" content="Étudiant en L3 cybersécurité. Pentest web, réseau, automatisation IA.">
+  <meta property="og:image" content="assets/moi.jpg">
+  <meta name="theme-color" content="#111318">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Crect width='8' height='8' fill='%23111318'/%3E%3Cpath fill='%23f2c14e' d='M1 1h6v1H1zM1 2h1v2H1zM1 4h6v1H1zM6 5h1v2H6zM1 6h5v1H1z'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+  <link rel="stylesheet" href="assets/style.css">
+  <script>
+    // thème choisi avant l'affichage, pour éviter un flash
+    try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
 </head>
 <body>
-    <header>
-        <h1>Stephen AKIYEMI</h1>
-        <p>Étudiant en Licence 2 Informatique à ESGIS Bénin | Passionné de Tech</p>
-    </header>
-    <div class="container">
-        <section>
-            <h2>À propos de moi</h2>
-            <p>
-                J'ai 19 ans et je suis passionné par l'informatique et le monde de la tech depuis toujours.<br>
-                Actuellement en Licence 2 d'informatique à ESGIS Bénin, je développe mes compétences dans plusieurs domaines du numérique.
-            </p>
-        </section>
-        <section>
-            <h2>Compétences</h2>
-            <div class="skills">
-                <span>PHP</span>
-                <span>HTML</span>
-                <span>CSS</span>
-                <span>JavaScript</span>
-                <span>Python (bases)</span>
-                <span>Webflows avec n8n</span>
-                <span>Création d'agents IA</span>
-                <span>SEO</span>
-                <span>Design (Canvtoa)</span>
-            </div>
-        </section>
-        <section>
-            <h2>Expériences</h2>
-            <ul>
-                <li>Stagiaire Assistant Virtuel (VA) pour une agence</li>
-                <li>Création de logos et supports visuels avec Canva</li>
-                <li>Développement de pages web optimisées SEO</li>
-            </ul>
-        </section>
-        <section>
-            <h2>Contact</h2>
-            <p>
-                Tu peux ajouter ici ton email, LinkedIn ou autre moyen de contact.
-            </p>
-        </section>
+  <a class="skip" href="#main">Aller au contenu</a>
+
+  <header class="topbar">
+    <div class="wrap bar">
+      <a class="brand" href="#top" aria-label="Accueil">
+        <span class="brand-mark" aria-hidden="true">SA</span><span class="cursor" aria-hidden="true">_</span>
+      </a>
+      <nav aria-label="Sections">
+        <ul class="nav">
+          <li><a href="#competences">Compétences</a></li>
+          <li><a href="#projets">Projets</a></li>
+          <li><a href="#certifications">Certifications</a></li>
+          <li><a href="#parcours">Parcours</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="theme-btn" id="theme-btn" type="button" aria-label="Changer de thème">
+        <span class="t-dark">NUIT</span><span class="t-light">JOUR</span>
+      </button>
     </div>
-    <div class="footer">
-        &copy; 2025 Stephen AKIYEMI. Tous droits réservés.
-    </div>
+  </header>
+
+  <main id="main">
+    <!-- ================= PROFIL ================= -->
+    <section class="hero wrap" id="top">
+      <div class="hero-text">
+        <p class="kicker"><span class="blink" aria-hidden="true"></span><span class="p1">PLAYER 1</span><span data-bind="statut">Recherche de stage en cybersécurité</span></p>
+        <h1>Stephen<br>Akiyemi</h1>
+        <p class="lede">Étudiant en <strong>L3 cybersécurité</strong>. J'apprends à attaquer des applications web et des réseaux en lab pour mieux savoir les défendre. À côté, je crée des sites web et j'automatise des tâches avec l'IA.</p>
+        <div class="actions">
+          <a class="btn primary" href="#projets">Voir mes projets</a>
+          <a class="btn" href="#contact">Me contacter</a>
+          <a class="btn ghost" data-link="github" href="https://github.com/akis01" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+      </div>
+
+      <aside class="card player" aria-label="Fiche joueur">
+        <div class="player-top">
+          <img src="assets/moi.jpg" alt="Portrait de Stephen Akiyemi" width="320" height="320">
+          <div class="player-id">
+            <span class="label">Joueur</span>
+            <b>S. AKIYEMI</b>
+            <span class="lvl">LVL <span data-bind="age">20</span></span>
+          </div>
+        </div>
+        <dl class="stats">
+          <div><dt>Classe</dt><dd data-bind="niveau">L3 Cybersécurité</dd></div>
+          <div><dt>Guilde</dt><dd data-bind="ecole">ESGIS Bénin</dd></div>
+          <div><dt>Base</dt><dd data-bind="ville">Cotonou, Bénin</dd></div>
+          <div><dt>Succès</dt><dd><span id="cert-count">3</span> certifications</dd></div>
+        </dl>
+        <div class="xp" aria-hidden="true">
+          <div class="xp-head"><span>XP</span><span>apprentissage en cours</span></div>
+          <div class="xp-bar"><i></i></div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- ================= COMPÉTENCES ================= -->
+    <section class="section wrap" id="competences">
+      <header class="sec-head">
+        <p class="sec-label">Inventaire</p>
+        <h2>Compétences</h2>
+        <p class="sec-note">Outils et techniques pratiqués en lab et en projet. Niveau :
+          <span class="legend"><span class="pips" data-n="1"></span> découverte</span>
+          <span class="legend"><span class="pips" data-n="2"></span> pratiqué</span>
+          <span class="legend"><span class="pips" data-n="3"></span> à l'aise</span>
+        </p>
+      </header>
+      <div class="skills" id="skills"></div>
+    </section>
+
+    <!-- ================= PROJETS ================= -->
+    <section class="section wrap" id="projets">
+      <header class="sec-head">
+        <p class="sec-label">Quêtes</p>
+        <h2>Projets</h2>
+        <p class="sec-note">Write-ups de labs, outils et sites. De nouveaux projets arrivent au fil de ma formation.</p>
+      </header>
+      <div class="tabs" role="tablist" aria-label="Catégories de projets" id="tabs"></div>
+      <div class="projects" id="projects-list" role="tabpanel" aria-labelledby="tab-tous"></div>
+    </section>
+
+    <!-- ================= CERTIFICATIONS ================= -->
+    <section class="section wrap" id="certifications">
+      <header class="sec-head">
+        <p class="sec-label">Succès débloqués</p>
+        <h2>Certifications</h2>
+      </header>
+      <div class="certs" id="certs"></div>
+    </section>
+
+    <!-- ================= PARCOURS ================= -->
+    <section class="section wrap" id="parcours">
+      <header class="sec-head">
+        <p class="sec-label">Carte du monde</p>
+        <h2>Parcours</h2>
+      </header>
+      <ol class="timeline" id="timeline"></ol>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section class="section wrap" id="contact">
+      <div class="card contact">
+        <div class="contact-text">
+          <p class="sec-label">Continue ?</p>
+          <h2>Travaillons ensemble</h2>
+          <p>Je cherche un stage ou une alternance en cybersécurité, et je reste ouvert aux projets web et d'automatisation. Réponse sous 48 h.</p>
+        </div>
+        <div class="contact-actions">
+          <div class="mail">
+            <span class="label">Email</span>
+            <code id="email" data-bind="email">akiyemistephen@gmail.com</code>
+            <button class="btn small" id="copy-btn" type="button">Copier</button>
+          </div>
+          <div class="links" id="links"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer wrap">
+    <span>© <span id="year">2026</span> Stephen Akiyemi</span>
+    <span class="hint">↑ ↑ ↓ ↓ ← → ← → B A</span>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="data.js"></script>
+  <script src="assets/main.js"></script>
 </body>
 </html>
