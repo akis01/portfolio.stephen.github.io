@@ -98,6 +98,22 @@ window.PORTFOLIO = {
   */
   projets: [
     {
+      titre: "AgriTech Bénin",
+      categorie: "web",
+      statut: "en-cours",
+      annee: "2026",
+      resume: {
+        fr: "Plateforme qui relie producteurs agricoles et acheteurs au Bénin : catalogue de produits, panier, espaces producteur, acheteur, partenaire et admin, authentification et base de données Supabase.",
+        en: "Platform connecting farmers and buyers in Benin: product catalogue, cart, producer, buyer, partner and admin dashboards, Supabase authentication and database."
+      },
+      stack: ["React", "TypeScript", "Tailwind", "Supabase", "Netlify"],
+      liens: {
+        code: "https://github.com/akis01/agritech-benin",
+        demo: "https://agritech-benin.netlify.app",
+        rapport: ""
+      }
+    },
+    {
       titre: { fr: "FinTrack · Gestionnaire de dépenses", en: "FinTrack · Expense tracker" },
       categorie: "web",
       statut: "termine",
