@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Stephen Akiyemi · Cybersécurité</title>
-  <meta name="description" content="Portfolio de Stephen Akiyemi, étudiant en L3 cybersécurité : pentest web, analyse réseau, automatisation IA et création de sites web.">
+  <meta name="description" content="Portfolio de Stephen Akiyemi, étudiant en L3 Sécurité Informatique : cybersécurité, sites web front-end et back-end, automatisation IA.">
   <meta name="author" content="Stephen Akiyemi">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Stephen Akiyemi · Cybersécurité">
-  <meta property="og:description" content="Étudiant en L3 cybersécurité. Pentest web, réseau, automatisation IA.">
+  <meta property="og:description" content="Étudiant en L3 Sécurité Informatique. Cybersécurité, développement web, automatisation IA.">
   <meta property="og:image" content="assets/moi.jpg">
   <meta name="theme-color" content="#111318">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Crect width='8' height='8' fill='%23111318'/%3E%3Cpath fill='%23f2c14e' d='M1 1h6v1H1zM1 2h1v2H1zM1 4h6v1H1zM6 5h1v2H6zM1 6h5v1H1z'/%3E%3C/svg%3E">
@@ -17,12 +17,15 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
   <link rel="stylesheet" href="assets/style.css">
   <script>
-    // thème choisi avant l'affichage, pour éviter un flash
-    try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+    // thème et langue choisis avant l'affichage, pour éviter un flash
+    try {
+      var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t;
+      var l = localStorage.getItem('lang'); if (l) document.documentElement.lang = l;
+    } catch (e) {}
   </script>
 </head>
 <body>
-  <a class="skip" href="#main">Aller au contenu</a>
+  <a class="skip" href="#main" data-i18n="skip">Aller au contenu</a>
 
   <header class="topbar">
     <div class="wrap bar">
@@ -31,16 +34,22 @@
       </a>
       <nav aria-label="Sections">
         <ul class="nav">
-          <li><a href="#competences">Compétences</a></li>
-          <li><a href="#projets">Projets</a></li>
-          <li><a href="#certifications">Certifications</a></li>
-          <li><a href="#parcours">Parcours</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#competences" data-i18n="nav.skills">Compétences</a></li>
+          <li><a href="#projets" data-i18n="nav.projects">Projets</a></li>
+          <li><a href="#certifications" data-i18n="nav.certs">Certifications</a></li>
+          <li><a href="#parcours" data-i18n="nav.path">Parcours</a></li>
+          <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
         </ul>
       </nav>
-      <button class="theme-btn" id="theme-btn" type="button" aria-label="Changer de thème">
-        <span class="t-dark">NUIT</span><span class="t-light">JOUR</span>
-      </button>
+      <div class="toggles">
+        <div class="lang" role="group" aria-label="Langue / Language">
+          <button type="button" data-lang="fr" aria-pressed="true">FR</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <button class="theme-btn" id="theme-btn" type="button" aria-label="Changer de thème" data-i18n-aria="theme">
+          <span class="t-dark" data-i18n="night">NUIT</span><span class="t-light" data-i18n="day">JOUR</span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -48,33 +57,33 @@
     <!-- ================= PROFIL ================= -->
     <section class="hero wrap" id="top">
       <div class="hero-text">
-        <p class="kicker"><span class="blink" aria-hidden="true"></span><span class="p1">PLAYER 1</span><span data-bind="statut">Recherche de stage en cybersécurité</span></p>
+        <p class="kicker"><span class="blink" aria-hidden="true"></span><span class="p1">PLAYER 1</span><span data-i18n="ready">Prêt à jouer</span></p>
         <h1>Stephen<br>Akiyemi</h1>
-        <p class="lede">Étudiant en <strong>L3 cybersécurité</strong>. J'apprends à attaquer des applications web et des réseaux en lab pour mieux savoir les défendre. À côté, je crée des sites web et j'automatise des tâches avec l'IA.</p>
+        <p class="lede" data-i18n-html="bio">Étudiant en <strong>L3 Sécurité Informatique</strong> et passionné de cybersécurité. Je crée aussi des <strong>sites web</strong>, du front-end au back-end, et j'aime <strong>automatiser</strong> tout ce qui peut l'être avec l'IA.</p>
         <div class="actions">
-          <a class="btn primary" href="#projets">Voir mes projets</a>
-          <a class="btn" href="#contact">Me contacter</a>
+          <a class="btn primary" href="#projets" data-i18n="cta.projects">Voir mes projets</a>
+          <a class="btn" href="#contact" data-i18n="cta.contact">Me contacter</a>
           <a class="btn ghost" data-link="github" href="https://github.com/akis01" target="_blank" rel="noopener">GitHub ↗</a>
         </div>
       </div>
 
-      <aside class="card player" aria-label="Fiche joueur">
+      <aside class="card player" aria-label="Fiche joueur" data-i18n-aria="card">
         <div class="player-top">
           <img src="assets/moi.jpg" alt="Portrait de Stephen Akiyemi" width="320" height="320">
           <div class="player-id">
-            <span class="label">Joueur</span>
+            <span class="label" data-i18n="player">Joueur</span>
             <b>S. AKIYEMI</b>
             <span class="lvl">LVL <span data-bind="age">20</span></span>
           </div>
         </div>
         <dl class="stats">
-          <div><dt>Classe</dt><dd data-bind="niveau">L3 Cybersécurité</dd></div>
-          <div><dt>Guilde</dt><dd data-bind="ecole">ESGIS Bénin</dd></div>
-          <div><dt>Base</dt><dd data-bind="ville">Cotonou, Bénin</dd></div>
-          <div><dt>Succès</dt><dd><span id="cert-count">3</span> certifications</dd></div>
+          <div><dt data-i18n="stat.class">Classe</dt><dd data-bind="niveau">L3 Sécurité Informatique</dd></div>
+          <div><dt data-i18n="stat.guild">Guilde</dt><dd data-bind="ecole">ESGIS Bénin</dd></div>
+          <div><dt data-i18n="stat.base">Base</dt><dd data-bind="ville">Cotonou, Bénin</dd></div>
+          <div><dt data-i18n="stat.wins">Succès</dt><dd><span id="cert-count">3</span> <span data-i18n="stat.certs">certifications</span></dd></div>
         </dl>
         <div class="xp" aria-hidden="true">
-          <div class="xp-head"><span>XP</span><span>apprentissage en cours</span></div>
+          <div class="xp-head"><span>XP</span><span data-i18n="xp">apprentissage en cours</span></div>
           <div class="xp-bar"><i></i></div>
         </div>
       </aside>
@@ -83,12 +92,12 @@
     <!-- ================= COMPÉTENCES ================= -->
     <section class="section wrap" id="competences">
       <header class="sec-head">
-        <p class="sec-label">Inventaire</p>
-        <h2>Compétences</h2>
-        <p class="sec-note">Outils et techniques pratiqués en lab et en projet. Niveau :
-          <span class="legend"><span class="pips" data-n="1"></span> découverte</span>
-          <span class="legend"><span class="pips" data-n="2"></span> pratiqué</span>
-          <span class="legend"><span class="pips" data-n="3"></span> à l'aise</span>
+        <p class="sec-label" data-i18n="skills.label">Inventaire</p>
+        <h2 data-i18n="nav.skills">Compétences</h2>
+        <p class="sec-note"><span data-i18n="skills.note">Outils et techniques pratiqués en lab et en projet. Niveau :</span>
+          <span class="legend"><span class="pips" data-n="1"></span> <span data-i18n="lvl1">découverte</span></span>
+          <span class="legend"><span class="pips" data-n="2"></span> <span data-i18n="lvl2">pratiqué</span></span>
+          <span class="legend"><span class="pips" data-n="3"></span> <span data-i18n="lvl3">à l'aise</span></span>
         </p>
       </header>
       <div class="skills" id="skills"></div>
@@ -97,19 +106,19 @@
     <!-- ================= PROJETS ================= -->
     <section class="section wrap" id="projets">
       <header class="sec-head">
-        <p class="sec-label">Quêtes</p>
-        <h2>Projets</h2>
-        <p class="sec-note">Write-ups de labs, outils et sites. De nouveaux projets arrivent au fil de ma formation.</p>
+        <p class="sec-label" data-i18n="projects.label">Quêtes</p>
+        <h2 data-i18n="nav.projects">Projets</h2>
+        <p class="sec-note" data-i18n="projects.note">Write-ups de labs, outils et sites. De nouveaux projets arrivent au fil de ma formation.</p>
       </header>
-      <div class="tabs" role="tablist" aria-label="Catégories de projets" id="tabs"></div>
+      <div class="tabs" role="tablist" id="tabs"></div>
       <div class="projects" id="projects-list" role="tabpanel" aria-labelledby="tab-tous"></div>
     </section>
 
     <!-- ================= CERTIFICATIONS ================= -->
     <section class="section wrap" id="certifications">
       <header class="sec-head">
-        <p class="sec-label">Succès débloqués</p>
-        <h2>Certifications</h2>
+        <p class="sec-label" data-i18n="certs.label">Succès débloqués</p>
+        <h2 data-i18n="nav.certs">Certifications</h2>
       </header>
       <div class="certs" id="certs"></div>
     </section>
@@ -117,25 +126,38 @@
     <!-- ================= PARCOURS ================= -->
     <section class="section wrap" id="parcours">
       <header class="sec-head">
-        <p class="sec-label">Carte du monde</p>
-        <h2>Parcours</h2>
+        <p class="sec-label" data-i18n="path.label">Carte du monde</p>
+        <h2 data-i18n="nav.path">Parcours</h2>
+        <p class="sec-note" data-i18n="path.note">Chaque année est un niveau. Le niveau en cours clignote.</p>
       </header>
-      <ol class="timeline" id="timeline"></ol>
+      <div class="path-grid">
+        <ol class="world" id="world"></ol>
+        <aside class="card side-quests">
+          <h3 data-i18n="exp.title">Quêtes secondaires</h3>
+          <p class="label" data-i18n="exp.sub">Expériences</p>
+          <ul id="experiences"></ul>
+        </aside>
+      </div>
     </section>
 
     <!-- ================= CONTACT ================= -->
     <section class="section wrap" id="contact">
       <div class="card contact">
         <div class="contact-text">
-          <p class="sec-label">Continue ?</p>
-          <h2>Travaillons ensemble</h2>
-          <p>Je cherche un stage ou une alternance en cybersécurité, et je reste ouvert aux projets web et d'automatisation. Réponse sous 48 h.</p>
+          <p class="sec-label" data-i18n="contact.label">Continue ?</p>
+          <h2 data-i18n="contact.title">Travaillons ensemble</h2>
+          <p data-i18n="contact.text">Un site web à créer, un process à automatiser ou une question de cybersécurité ? Écris-moi, je réponds vite.</p>
         </div>
         <div class="contact-actions">
           <div class="mail">
             <span class="label">Email</span>
             <code id="email" data-bind="email">akiyemistephen@gmail.com</code>
-            <button class="btn small" id="copy-btn" type="button">Copier</button>
+            <button class="btn small" id="copy-btn" type="button" data-i18n="copy">Copier</button>
+          </div>
+          <div class="mail">
+            <span class="label" data-i18n="phone">Téléphone / WhatsApp</span>
+            <code id="phone" data-bind="telephone">+229 01 52 81 23 83</code>
+            <button class="btn small" id="copy-phone" type="button" data-i18n="copy">Copier</button>
           </div>
           <div class="links" id="links"></div>
         </div>
@@ -147,6 +169,16 @@
     <span>© <span id="year">2026</span> Stephen Akiyemi</span>
     <span class="hint">↑ ↑ ↓ ↓ ← → ← → B A</span>
   </footer>
+
+  <!-- Mini personnage qui évolue au défilement -->
+  <div class="buddy" id="buddy" aria-hidden="true">
+    <div class="buddy-track"><i id="buddy-fill"></i></div>
+    <div class="buddy-body" id="buddy-body">
+      <div class="bubble" id="bubble"></div>
+      <canvas id="buddy-canvas" width="16" height="22"></canvas>
+      <span class="buddy-name" id="buddy-name">Novice</span>
+    </div>
+  </div>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 

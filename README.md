@@ -14,6 +14,10 @@ Tout le contenu se trouve dans **`data.js`**. En général, c'est le seul fichie
 | Changer une compétence       | `competences` (niveau 1, 2 ou 3)                        |
 | LinkedIn, CV, profil CTF     | `profil`                                                |
 
+Le site est bilingue (bouton FR / EN). Un texte peut s'écrire simplement (`"Burp Suite"`, identique dans les deux langues) ou en deux langues (`{ fr: "Terminé", en: "Done" }`). Les libellés fixes de l'interface sont dans `assets/main.js`, objet `UI`.
+
+Le parcours (`parcours`) va du plus ancien au plus récent ; mets `en_cours: true` sur l'année actuelle. Les expériences sont dans `experiences`.
+
 Les onglets de la section Projets (Cybersécurité, Sites web, Automatisation IA) se remplissent selon le champ `categorie` de chaque projet : `"cyber"`, `"web"` ou `"ia"`.
 
 ## Structure
@@ -32,5 +36,7 @@ archive/            anciennes versions du site
 
 Dans le dépôt, ouvre **Settings → Pages**, choisis la source *Deploy from a branch*, puis la branche `main` et le dossier `/ (root)`.
 Le site sera en ligne sur `https://akis01.github.io/portfolio.stephen.github.io/`.
+
+Le mini personnage à droite gagne un équipement à chaque section (Novice → Apprenti → Hacker → Certifié → Explorateur → Légende).
 
 Petit bonus : tape le code Konami sur le site (↑ ↑ ↓ ↓ ← → ← → B A).
