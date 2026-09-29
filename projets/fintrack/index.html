@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FinTrack</title>
+  <meta name="description" content="FinTrack : enregistre tes dépenses, gère ton budget et visualise tes habitudes financières. Données stockées uniquement dans ton navigateur.">
+  <meta name="theme-color" content="#2a78d6">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232a78d6'/%3E%3Cpath d='M8 21l5-6 4 4 7-9' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <script>try { var th = JSON.parse(localStorage.getItem('fintrack.v1') || '{}').settings; if (th && th.theme) document.documentElement.dataset.theme = th.theme; } catch (e) {}</script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap bar">
+      <a class="brand" href="#" aria-label="FinTrack">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8"/><path d="M8 21l5-6 4 4 7-9"/></svg>
+        FinTrack
+      </a>
+      <div class="month" role="group" aria-label="Mois affiché">
+        <button class="icon-btn" id="prev-month" type="button" aria-label="Mois précédent">‹</button>
+        <span id="month-label" aria-live="polite">Septembre 2026</span>
+        <button class="icon-btn" id="next-month" type="button" aria-label="Mois suivant">›</button>
+      </div>
+      <div class="bar-actions">
+        <label class="sr" for="currency">Devise</label>
+        <select id="currency" class="select-sm">
+          <option value="XOF">F CFA</option>
+          <option value="EUR">€ EUR</option>
+          <option value="USD">$ USD</option>
+        </select>
+        <button class="icon-btn" id="theme-btn" type="button" aria-label="Changer de thème">◐</button>
+        <button class="btn ghost" id="data-btn" type="button">Données</button>
+        <button class="btn primary" id="add-btn" type="button">+ Opération</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap" id="app">
+    <!-- état vide -->
+    <section class="empty card" id="empty" hidden>
+      <div>
+        <h1>Bienvenue sur FinTrack</h1>
+        <p>Note tes dépenses et tes revenus, fixe un budget par catégorie et regarde où part ton argent chaque mois. Tout reste dans ton navigateur : aucun compte, aucun serveur.</p>
+      </div>
+      <div class="empty-actions">
+        <button class="btn primary" type="button" data-action="add">Ajouter ma première dépense</button>
+        <button class="btn" type="button" data-action="demo">Charger des données d'exemple</button>
+      </div>
+    </section>
+
+    <!-- tableau de bord -->
+    <div id="dash">
+      <section class="kpis" aria-label="Résumé du mois">
+        <article class="kpi card"><span class="kpi-label">Solde du mois</span><b id="k-balance">0</b><span class="kpi-sub" id="k-balance-sub"></span></article>
+        <article class="kpi card"><span class="kpi-label"><i class="key key-in"></i>Revenus</span><b id="k-income">0</b><span class="kpi-sub" id="k-income-sub"></span></article>
+        <article class="kpi card"><span class="kpi-label"><i class="key key-out"></i>Dépenses</span><b id="k-expense">0</b><span class="kpi-sub" id="k-expense-sub"></span></article>
+        <article class="kpi card">
+          <span class="kpi-label">Budget restant</span><b id="k-budget">0</b>
+          <div class="meter" aria-hidden="true"><i id="k-budget-bar"></i></div>
+          <span class="kpi-sub" id="k-budget-sub"></span>
+        </article>
+      </section>
+
+      <section class="grid-2">
+        <article class="card panel">
+          <header class="panel-head">
+            <div><h2>Dépenses par jour</h2><p class="panel-sub" id="daily-sub"></p></div>
+          </header>
+          <div class="chart" id="chart-daily"></div>
+        </article>
+        <article class="card panel">
+          <header class="panel-head">
+            <div><h2>Budgets</h2><p class="panel-sub">Plafonds du mois par catégorie</p></div>
+            <button class="btn small" id="budget-btn" type="button">Modifier</button>
+          </header>
+          <ul class="budgets" id="budgets"></ul>
+        </article>
+      </section>
+
+      <section class="grid-2">
+        <article class="card panel">
+          <header class="panel-head">
+            <div><h2>Revenus et dépenses</h2><p class="panel-sub">6 derniers mois</p></div>
+            <div class="legend"><span><i class="key key-in"></i>Revenus</span><span><i class="key key-out"></i>Dépenses</span></div>
+          </header>
+          <div class="chart" id="chart-trend"></div>
+        </article>
+        <article class="card panel">
+          <header class="panel-head">
+            <div><h2>Où va l'argent</h2><p class="panel-sub" id="cats-sub">Dépenses du mois par catégorie</p></div>
+          </header>
+          <ul class="cat-bars" id="cat-bars"></ul>
+        </article>
+      </section>
+
+      <section class="card panel">
+        <header class="panel-head wrap-row">
+          <div><h2>Opérations</h2><p class="panel-sub" id="tx-sub"></p></div>
+          <div class="filters">
+            <label class="sr" for="f-search">Rechercher</label>
+            <input id="f-search" type="search" placeholder="Rechercher…">
+            <label class="sr" for="f-type">Type</label>
+            <select id="f-type"><option value="all">Tout</option><option value="expense">Dépenses</option><option value="income">Revenus</option></select>
+            <label class="sr" for="f-cat">Catégorie</label>
+            <select id="f-cat"><option value="all">Toutes catégories</option></select>
+          </div>
+        </header>
+        <div class="table-wrap">
+          <table class="tx">
+            <thead><tr><th scope="col">Date</th><th scope="col">Description</th><th scope="col">Catégorie</th><th scope="col" class="num">Montant</th><th scope="col"><span class="sr">Actions</span></th></tr></thead>
+            <tbody id="tx-body"></tbody>
+          </table>
+          <p class="tx-empty" id="tx-empty" hidden>Aucune opération ne correspond à ces filtres.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="wrap foot">
+    <span>FinTrack · projet de <a href="../../" rel="author">Stephen Akiyemi</a></span>
+    <span>HTML · CSS · JavaScript · LocalStorage</span>
+  </footer>
+
+  <!-- ajout / modification -->
+  <dialog id="tx-dialog" aria-labelledby="tx-title">
+    <form method="dialog" id="tx-form" novalidate>
+      <h2 id="tx-title">Nouvelle opération</h2>
+      <div class="seg" role="radiogroup" aria-label="Type">
+        <label><input type="radio" name="type" value="expense" checked><span>Dépense</span></label>
+        <label><input type="radio" name="type" value="income"><span>Revenu</span></label>
+      </div>
+      <div class="field"><label for="t-amount">Montant</label><input id="t-amount" name="amount" type="number" inputmode="decimal" min="0" step="any" required placeholder="0"></div>
+      <div class="field"><label for="t-note">Description</label><input id="t-note" name="note" maxlength="80" placeholder="Ex. déjeuner, zem, forfait internet"></div>
+      <div class="row">
+        <div class="field"><label for="t-cat">Catégorie</label><select id="t-cat" name="category"></select></div>
+        <div class="field"><label for="t-date">Date</label><input id="t-date" name="date" type="date" required></div>
+      </div>
+      <p class="form-error" id="tx-error" role="alert" hidden></p>
+      <div class="dialog-actions">
+        <button class="btn" value="cancel" type="button" data-close>Annuler</button>
+        <button class="btn primary" type="submit" id="tx-submit">Ajouter</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- budgets -->
+  <dialog id="budget-dialog" aria-labelledby="b-title">
+    <form method="dialog" id="budget-form">
+      <h2 id="b-title">Budgets mensuels</h2>
+      <p class="panel-sub">Laisse vide une catégorie sans plafond. Le budget total peut être plus grand que la somme des catégories.</p>
+      <div class="field"><label for="b-total">Budget total du mois</label><input id="b-total" type="number" min="0" step="any" inputmode="decimal"></div>
+      <div class="budget-fields" id="budget-fields"></div>
+      <div class="dialog-actions">
+        <button class="btn" type="button" data-close>Annuler</button>
+        <button class="btn primary" type="submit">Enregistrer</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- données -->
+  <dialog id="data-dialog" aria-labelledby="d-title">
+    <div class="data-box">
+      <h2 id="d-title">Tes données</h2>
+      <p class="panel-sub">FinTrack enregistre tout dans le LocalStorage de ce navigateur. Exporte une sauvegarde pour la garder ou la transférer sur un autre appareil.</p>
+      <div class="data-grid">
+        <button class="btn" type="button" id="export-json">Exporter (JSON)</button>
+        <button class="btn" type="button" id="export-csv">Exporter (CSV)</button>
+        <label class="btn" for="import-file">Importer un JSON</label>
+        <input id="import-file" type="file" accept="application/json,.json" hidden>
+        <button class="btn" type="button" id="load-demo">Charger l'exemple</button>
+      </div>
+      <div class="danger">
+        <button class="btn danger-btn" type="button" id="reset-btn">Tout effacer</button>
+        <div class="confirm" id="reset-confirm" hidden>
+          <span>Effacer toutes les opérations et budgets ?</span>
+          <button class="btn small danger-btn" type="button" id="reset-yes">Oui, effacer</button>
+          <button class="btn small" type="button" id="reset-no">Non</button>
+        </div>
+      </div>
+      <div class="dialog-actions"><button class="btn" type="button" data-close>Fermer</button></div>
+    </div>
+  </dialog>
+
+  <div class="tooltip" id="tooltip" role="tooltip" hidden></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"><span id="toast-msg"></span><button type="button" id="toast-undo" hidden>Annuler</button></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

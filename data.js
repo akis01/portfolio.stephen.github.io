@@ -97,6 +97,22 @@ window.PORTFOLIO = {
      },
   */
   projets: [
+    {
+      titre: { fr: "FinTrack · Gestionnaire de dépenses", en: "FinTrack · Expense tracker" },
+      categorie: "web",
+      statut: "termine",
+      annee: "2026",
+      resume: {
+        fr: "Application pour enregistrer ses dépenses, fixer un budget par catégorie et visualiser ses habitudes financières. Graphiques SVG faits main, export CSV/JSON, thème sombre.",
+        en: "App to log expenses, set per-category budgets and visualise spending habits. Hand-drawn SVG charts, CSV/JSON export, dark mode."
+      },
+      stack: ["HTML", "CSS", "JavaScript", "LocalStorage"],
+      liens: {
+        code: "https://github.com/akis01/portfolio.stephen.github.io/tree/main/projets/fintrack",
+        demo: "projets/fintrack/",
+        rapport: ""
+      }
+    }
   ],
 
   /* ---------- PARCOURS (formation) ----------
