@@ -109,7 +109,7 @@ window.PORTFOLIO = {
       stack: ["HTML", "CSS", "JavaScript", "LocalStorage"],
       liens: {
         code: "https://github.com/akis01/portfolio.stephen.github.io/tree/main/projets/fintrack",
-        demo: "projets/fintrack/",
+        demo: "https://akis01.github.io/portfolio.stephen.github.io/projets/fintrack/",
         rapport: ""
       }
     }
