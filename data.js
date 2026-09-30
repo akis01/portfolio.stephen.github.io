@@ -98,6 +98,22 @@ window.PORTFOLIO = {
   */
   projets: [
     {
+      titre: "Maillot Zone",
+      categorie: "web",
+      statut: "termine",
+      annee: "2026",
+      resume: {
+        fr: "Site vitrine d'une boutique de maillots de foot au Bénin : rotations 360° pilotées par le défilement (vidéos Veo 3), collection filtrable, rendez-vous WhatsApp, sécurité renforcée (CSP, SRI).",
+        en: "Showcase site for a football jersey shop in Benin: scroll-driven 360° rotations (Veo 3 videos), filterable collection, WhatsApp booking, hardened security (CSP, SRI)."
+      },
+      stack: ["HTML", "CSS", "JavaScript", "GSAP", "Netlify"],
+      liens: {
+        code: "https://github.com/akis01/maillot-zone",
+        demo: "https://maillot-zone.netlify.app",
+        rapport: ""
+      }
+    },
+    {
       titre: "AgriTech Bénin",
       categorie: "web",
       statut: "en-cours",
