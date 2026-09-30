@@ -106,10 +106,10 @@ window.PORTFOLIO = {
         fr: "Site vitrine d'une boutique de maillots de foot au Bénin : rotations 360° pilotées par le défilement (vidéos Veo 3), collection filtrable, rendez-vous WhatsApp, sécurité renforcée (CSP, SRI).",
         en: "Showcase site for a football jersey shop in Benin: scroll-driven 360° rotations (Veo 3 videos), filterable collection, WhatsApp booking, hardened security (CSP, SRI)."
       },
-      stack: ["HTML", "CSS", "JavaScript", "GSAP", "Netlify"],
+      stack: ["HTML", "CSS", "JavaScript", "GSAP", "GitHub Pages"],
       liens: {
         code: "https://github.com/akis01/maillot-zone",
-        demo: "https://maillot-zone.netlify.app",
+        demo: "https://akis01.github.io/maillot-zone/",
         rapport: ""
       }
     },
