@@ -20,10 +20,10 @@
       "skills.label": "Inventaire", "skills.note": "Outils et techniques pratiqués en lab et en projet. Niveau :",
       "lvl1": "découverte", "lvl2": "pratiqué", "lvl3": "à l'aise", "lvlaria": "niveau {n} sur 3",
       "projects.label": "Quêtes", "projects.note": "Write-ups de labs, outils et sites. De nouveaux projets arrivent au fil de ma formation.",
-      "tab.tous": "Tous", "tab.cyber": "Cybersécurité", "tab.web": "Sites web", "tab.ia": "Automatisation IA",
+      "tab.tous": "Tous", "tab.cyber": "Cybersécurité", "tab.web": "Sites web", "tab.ia": "Automatisation IA", "tab.design": "Motion design",
       "slot": "Emplacement libre",
       "slot.tous": "Mes premiers projets arrivent bientôt.", "slot.cyber": "Write-ups de CTF et labs de pentest à venir.",
-      "slot.web": "Sites et applications web à venir.", "slot.ia": "Workflows et agents IA à venir.",
+      "slot.web": "Sites et applications web à venir.", "slot.ia": "Workflows et agents IA à venir.", "slot.design": "Vidéos et animations à venir.",
       "st.termine": "Terminé", "st.en-cours": "En cours",
       "l.code": "Code source ↗", "l.demo": "Site en ligne ↗", "l.rapport": "Write-up ↗",
       "certs.label": "Succès débloqués", "cert.view": "Voir le certificat", "cert.verify": "Vérifier ↗", "cert.locked": "Succès à débloquer",
@@ -50,10 +50,10 @@
       "skills.label": "Inventory", "skills.note": "Tools and techniques practised in labs and projects. Level:",
       "lvl1": "beginner", "lvl2": "practised", "lvl3": "confident", "lvlaria": "level {n} of 3",
       "projects.label": "Quests", "projects.note": "Lab write-ups, tools and websites. New projects are added as my studies progress.",
-      "tab.tous": "All", "tab.cyber": "Cybersecurity", "tab.web": "Websites", "tab.ia": "AI automation",
+      "tab.tous": "All", "tab.cyber": "Cybersecurity", "tab.web": "Websites", "tab.ia": "AI automation", "tab.design": "Motion design",
       "slot": "Empty slot",
       "slot.tous": "My first projects are coming soon.", "slot.cyber": "CTF write-ups and pentest labs coming soon.",
-      "slot.web": "Websites and web apps coming soon.", "slot.ia": "Workflows and AI agents coming soon.",
+      "slot.web": "Websites and web apps coming soon.", "slot.ia": "Workflows and AI agents coming soon.", "slot.design": "Videos and animations coming soon.",
       "st.termine": "Done", "st.en-cours": "In progress",
       "l.code": "Source code ↗", "l.demo": "Live site ↗", "l.rapport": "Write-up ↗",
       "certs.label": "Achievements unlocked", "cert.view": "View certificate", "cert.verify": "Verify ↗", "cert.locked": "Achievement to unlock",
@@ -93,7 +93,7 @@
   const pips = (n) => `<span class="pips" role="img" aria-label="${esc(u("lvlaria").replace("{n}", n))}">${[1, 2, 3].map((i) => `<i class="${i <= n ? "on" : ""}"></i>`).join("")}</span>`;
 
   /* =================== RENDU =================== */
-  const CATS = ["tous", "cyber", "web", "ia"];
+  const CATS = ["tous", "cyber", "web", "ia", "design"];
   let currentCat = "tous";
   const projets = D.projets || [];
 
@@ -124,15 +124,16 @@
     const l = p.liens || {};
     const links = ["code", "demo", "rapport"].filter((k) => l[k])
       .map((k) => `<a href="${esc(l[k])}" target="_blank" rel="noopener">${u("l." + k)}</a>`).join("");
+    const video = p.video ? `<div class="project-video"><video controls playsinline preload="none"${p.poster ? ` poster="${esc(p.poster)}"` : ""} aria-label="${esc(t(p.titre))}"><source src="${esc(p.video)}" type="video/mp4"></video></div>` : "";
     return `
-      <article class="card project">
+      <article class="card project${p.video ? " has-video" : ""}">${video}<div class="project-body">
         <div class="meta"><span>${esc(u("tab." + p.categorie))}${p.annee ? " · " + esc(p.annee) : ""}</span>
           <span class="status ${esc(p.statut)}">${esc(u("st." + p.statut))}</span></div>
         <h3>${esc(t(p.titre))}</h3>
         <p>${esc(t(p.resume))}</p>
         <ul class="stack">${(p.stack || []).map((s) => `<li>${esc(t(s))}</li>`).join("")}</ul>
         ${links ? `<div class="links">${links}</div>` : ""}
-      </article>`;
+      </div></article>`;
   }
   function renderProjects() {
     const tabs = $("#tabs");

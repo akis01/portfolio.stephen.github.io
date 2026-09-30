@@ -42,12 +42,13 @@ window.PORTFOLIO = {
       { nom: "Metasploit", niveau: 1 },
       { nom: "Linux (Kali)", niveau: 2 }
     ]},
-    { groupe: { fr: "Web & automatisation", en: "Web & automation" }, items: [
+    { groupe: { fr: "Web, design & automatisation", en: "Web, design & automation" }, items: [
       { nom: { fr: "Front-end (HTML, CSS, JS)", en: "Front-end (HTML, CSS, JS)" }, niveau: 3 },
       { nom: { fr: "Back-end (PHP)", en: "Back-end (PHP)" }, niveau: 2 },
       { nom: "Python", niveau: 1 },
       { nom: "n8n (workflows)", niveau: 2 },
-      { nom: { fr: "Agents IA / Claude Code", en: "AI agents / Claude Code" }, niveau: 2 }
+      { nom: { fr: "Agents IA / Claude Code", en: "AI agents / Claude Code" }, niveau: 2 },
+      { nom: "Motion design", niveau: 1 }
     ]}
   ],
 
@@ -83,8 +84,9 @@ window.PORTFOLIO = {
   ],
 
   /* ---------- PROJETS ----------
-     categorie : "cyber", "web" ou "ia"   (ce sont les onglets de la section Projets)
+     categorie : "cyber", "web", "ia" ou "design"   (ce sont les onglets de la section Projets)
      statut    : "termine" ou "en-cours"
+     video     : (facultatif) chemin d'une vidéo mp4, affichée en grand avec « poster » comme image d'aperçu
      Copie ce modèle pour ajouter un projet :
      {
        titre: { fr: "Scanner de ports en Python", en: "Python port scanner" },
@@ -97,6 +99,20 @@ window.PORTFOLIO = {
      },
   */
   projets: [
+    {
+      titre: { fr: "Maillot Zone · Vidéo promo", en: "Maillot Zone · Promo video" },
+      categorie: "design",
+      statut: "termine",
+      annee: "2026",
+      video: "assets/projets/maillot-zone-promo.mp4",
+      poster: "assets/projets/maillot-zone-promo.jpg",
+      resume: {
+        fr: "Vidéo de 15 secondes en motion design pour promouvoir les maillots de la boutique : rotations à 360°, typographie animée et bande-son rythmée, dans la direction artistique du site.",
+        en: "15-second motion design video promoting the shop's jerseys: 360° rotations, kinetic typography and a rhythmic soundtrack, matching the website's art direction."
+      },
+      stack: ["Motion design", "Python", "Cairo", "FFmpeg"],
+      liens: { code: "", demo: "https://akis01.github.io/maillot-zone/", rapport: "" }
+    },
     {
       titre: "Maillot Zone",
       categorie: "web",

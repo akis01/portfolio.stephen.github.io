@@ -167,7 +167,13 @@ p { margin: 0; }
 .tab:hover { color: var(--text); border-color: var(--muted); }
 .tab[aria-selected="true"] { color: var(--on-coin); background: var(--coin); border-color: var(--coin); }
 .projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 20px; }
-.project { padding: 22px; display: grid; gap: 12px; grid-template-rows: auto auto 1fr auto auto; min-width: 0; }
+.project { padding: 22px; min-width: 0; }
+.project-body { display: grid; gap: 12px; grid-template-rows: auto auto 1fr auto auto; height: 100%; min-width: 0; }
+/* carte avec vidéo : pleine largeur, vidéo à gauche et infos à droite */
+.project.has-video { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 24px; align-items: center; }
+.project-video { border: 2px solid var(--line); background: #000; aspect-ratio: 16 / 9; max-width: 100%; }
+.project-video video { display: block; width: 100%; height: 100%; }
+@media (max-width: 760px) { .project.has-video { grid-template-columns: 1fr; } }
 .project .meta { display: flex; justify-content: space-between; gap: 10px; font-family: var(--f-mono); font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
 .status { display: inline-flex; align-items: center; gap: 6px; }
 .status::before { content: ""; width: 8px; height: 8px; background: var(--go); }
